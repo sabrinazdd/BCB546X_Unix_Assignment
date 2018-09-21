@@ -125,12 +125,35 @@
  
  ```
  
- * 14 extract data from the sorted maize file according to chromosome number
-
- * 15 replace the "?" with "-" globally and re-sort the file based on column 2 (chromosome) and column 3 (decreasing positions)
+ * 14 extract data from the sorted maize file according to chromosome number. I tried the "for" loop command, but it didn't work. So I kind of manually extract these data using "awk". Before doing awk, I use "sort" and "uniq -c" command to list how much lines I need to extract for each chromosome
+  chromosome 1: 155
+  chromosome 2: 126
+  chromosome 3: 107
+  chromosome 4: 88
+  chromosome 5: 122
+  chromosome 6: 73
+  chromosome 7: 96
+  chromosome 8: 62
+  chromosome 9: 57
+  chromosome 10: 53
+ 
+  ```
+  cut -f 2 sort_maize.txt | sort -k2,2V | uniq -c
+  
+  awk 'NR >= 1 && NR <= 155' sort_maize.txt > chromosome1_maize.txt
+  ```
+ * 15 to validate the extraction in step 14 is correct, use "wc -l" for all the 10 chromosome files to see if the number match the "sort" and "uniq -c" number
+ 
+ ```
+ wl -c chromosome*
+ 
+ ```
+ * 16 replace the "?" with "-" globally and re-sort the file based on column 2 (chromosome) and column 3 (decreasing positions)
 
  ```
  sed 's/?/-/g' sort_maize.txt | sort -k2,2V -k3,3nr > replace_sort_maize.txt
+ 
  ```
- * 16
- Another change
+ * 17 repeat what I did in step 14
+ * 18 repeat step 12-17 to sort teosinte data
+ 

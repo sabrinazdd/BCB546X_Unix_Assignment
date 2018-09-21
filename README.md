@@ -145,7 +145,7 @@
  * 15 to validate the extraction in step 14 is correct, use "wc -l" for all the 10 chromosome files to see if the number match the "sort" and "uniq -c" number
  
  ```
- wl -c chromosome*
+ wc -l chromosome*
  
  ```
  * 16 replace the "?" with "-" globally and re-sort the file based on column 2 (chromosome) and column 3 (decreasing positions)
@@ -154,6 +154,7 @@
  sed 's/?/-/g' sort_maize.txt | sort -k2,2V -k3,3nr > replace_sort_maize.txt
  
  ```
- * 17 repeat what I did in step 14
+ * 17 repeat what I did in step 14-15
+ 
  * 18 repeat step 12-17 to sort teosinte data
  
